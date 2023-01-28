@@ -19,52 +19,65 @@ import {
   faFacebookF,
   faGoogle,
 } from "@fortawesome/free-brands-svg-icons";
-import { ReactComponent as IconPhone } from "bootstrap-icons/icons/phone.svg";
+import { ReactComponent as IconPhone } from "bootstrap-icons/icons/envelope.svg";
 import { ReactComponent as IconShieldLock } from "bootstrap-icons/icons/shield-lock.svg";
 
 const SignUpForm = (props) => {
   const { handleSubmit, submitting, onSubmit, submitFailed } = props;
+  const options = ["male", "female"];
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
       className={`needs-validation ${submitFailed ? "was-validated" : ""}`}
       noValidate
     >
-      <div className="row mb-3">
-        <div className="col-md-6">
-          <Field
-            name="firstName"
-            type="text"
-            label="First Name"
-            component={renderFormField}
-            placeholder="First Name"
-            validate={[required, name]}
-            required={true}
-          />
-        </div>
-        <div className="col-md-6">
-          <Field
-            name="lastName"
-            type="text"
-            label="Last Name"
-            component={renderFormField}
-            placeholder="Last Name"
-            validate={[required, name]}
-            required={true}
-          />
-        </div>
+      <div className="mb-3">
+        <Field
+          name="name"
+          type="text"
+          label="Name"
+          component={renderFormField}
+          placeholder="Enter Your Name"
+          validate={[required, name]}
+          required={true}
+        />
       </div>
+      <div>
+        <label className="text-dark mt-2">Gender</label>
+              {options.map((option) => (
+                <div className="form-check form-check-inline mx-3 mb-3" key={option}>
+                  <input
+                    className="form-check-input"
+                    type="radio"
+                    value={option}
+                    id={option}
+                    name="gender"
+                  />
+                  <label className="form-check-label text-dark">{option}</label>
+                </div>
+                
+              ))}
+      </div>
+
       <Field
-        name="mobileNo"
-        type="number"
-        label="Mobile no"
+        name="email"
+        type="email"
+        label="Email"
         component={renderFormGroupField}
-        placeholder="Mobile no without country code"
+        placeholder="Enter your Email"
         icon={IconPhone}
-        validate={[required, maxLengthMobileNo, minLengthMobileNo, digit]}
+        validate={[required]}
         required={true}
-        max="999999999999999"
-        min="9999"
+        className="mb-3"
+      />
+      <Field
+        name="phone"
+        type="number"
+        label="Mobile Number"
+        component={renderFormField}
+        placeholder="Enter Your Mobile Number"
+        validate={[required, digit, maxLengthMobileNo, minLengthMobileNo]}
+        required={true}
         className="mb-3"
       />
       <Field
@@ -78,7 +91,7 @@ const SignUpForm = (props) => {
         required={true}
         maxLength="20"
         minLength="8"
-        className="mb-3"
+        className="my-3"
       />
       <div className="d-grid">
         <button
@@ -90,7 +103,7 @@ const SignUpForm = (props) => {
         </button>
       </div>
       <Link className="float-start" to="/account/signin" title="Sign In">
-        Sing In
+        Sign In
       </Link>
       <Link
         className="float-end"

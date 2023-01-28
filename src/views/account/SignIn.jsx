@@ -1,14 +1,20 @@
-import React, { lazy, Component } from "react";
+import React, { lazy } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios"
 const SignInForm = lazy(() => import("../../components/account/SignInForm"));
 
-class SignInView extends Component {
-  onSubmit = async (values) => {
-    alert(JSON.stringify(values));  //TODO - Add Axios
-  };
-  render() {
-    return (
-      <div className="container my-3">
+const SignIn = () => {
+  const onSubmit = async(values)=>{
+    console.log(values)
+    var LoginData = new FormData();
+    LoginData.append("email", values.email);
+    LoginData.append("password", values.password);
+    const res = await axios.post("http://20.219.190.188/api/user/login/",LoginData)
+    console.log(res)
+    // alert(JSON.stringify(values))
+  }
+  return (
+    <div className="container my-3">
         <div className="row border">
           <div className="col-md-6 bg-light bg-gradient p-3 d-none d-md-block">
             <Link to="/">
@@ -28,12 +34,11 @@ class SignInView extends Component {
           </div>
           <div className="col-md-6 p-3">
             <h4 className="text-center">Sign In</h4>
-            <SignInForm onSubmit={this.onSubmit} />
+            <SignInForm onSubmit={onSubmit} />
           </div>
         </div>
       </div>
-    );
-  }
+  )
 }
 
-export default SignInView;
+export default SignIn
