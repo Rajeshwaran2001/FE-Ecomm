@@ -17,8 +17,7 @@
 - Notification
 - Support
 - Contact Us
-- Blog
-- Blog Detail Page
+
 - Error Page (404, 500)
 
 ## Thanks
