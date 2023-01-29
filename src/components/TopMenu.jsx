@@ -7,7 +7,6 @@ const TopMenu = () => {
   const fetchData = async()=>{
     const res =await axios.get("https://api.rajeshwaran.me/api/category/")
     setCategories(res.data)
-    console.log(res.data)
   }
   fetchData()
   return (

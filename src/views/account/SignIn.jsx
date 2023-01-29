@@ -7,12 +7,10 @@ const SignInForm = lazy(() => import("../../components/account/SignInForm"));
 const SignIn = () => {
   const navigate = useNavigate()
   const onSubmit = async(values)=>{
-    console.log(values)
     var LoginData = new FormData();
     LoginData.append("email", values.email);
     LoginData.append("password", values.password);
     const res = await axios.post("https://api.rajeshwaran.me/api/user/login/",LoginData)
-    console.log(res.data.user.id,res.data.token);
     localStorage.setItem("user",JSON.stringify({"userId": (res.data.user.id), "jwt": (res.data.token)}))
     if(res.status===200 || res.statusText){
       navigate('/')

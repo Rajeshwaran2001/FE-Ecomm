@@ -4,18 +4,11 @@ import axios from "axios"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTh, faBars } from "@fortawesome/free-solid-svg-icons";
 const Paging = lazy(() => import("../../components/Paging"));
-const Breadcrumb = lazy(() => import("../../components/Breadcrumb"));
 const FilterCategory = lazy(() => import("../../components/filter/Category"));
-const FilterPrice = lazy(() => import("../../components/filter/Price"));
-const FilterSize = lazy(() => import("../../components/filter/Size"));
-const FilterStar = lazy(() => import("../../components/filter/Star"));
-const FilterColor = lazy(() => import("../../components/filter/Color"));
-const FilterTag = lazy(() => import("../../components/filter/Tag"));
-const FilterClear = lazy(() => import("../../components/filter/Clear"));
-const CardServices = lazy(() => import("../../components/card/CardServices"));
 const CardProductGrid = lazy(() =>
   import("../../components/card/CardProductGrid")
 );
+
 const CardProductList = lazy(() =>
   import("../../components/card/CardProductList")
 );
@@ -82,38 +75,14 @@ class ProductListView extends Component {
   render() {
     return (
       <React.Fragment>
-        {/* <div
-          className="p-5 bg-primary bs-cover"
-          style={{
-            backgroundImage: "url(../../images/banner/50-Banner.webp)",
-          }}
-        >
-          <div className="container text-center">
-            <span className="display-5 px-3 bg-white rounded shadow">
-              T-Shirts
-            </span>
-          </div>
-        </div> */}
-        {/* <Breadcrumb /> */}
-        <div className="container-fluid mb-3">
+        <div className="container-fluid my-3">
           <div className="row">
             <div className="col-md-3">
-              <FilterCategory />
-              <FilterPrice />
-              <FilterSize />
-              <FilterStar />
-              <FilterColor />
-              <FilterClear />
-              <FilterTag />
-              <CardServices />
+              <FilterCategory/>
             </div>
             <div className="col-md-9">
               <div className="row">
                 <div className="col-7">
-                  <span className="align-middle fw-bold">
-                    {this.state.totalItems} results for{" "}
-                    <span className="text-warning">"t-shirts"</span>
-                  </span>
                 </div>
                 <div className="col-5 d-flex justify-content-end">
                   <select
