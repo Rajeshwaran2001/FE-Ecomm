@@ -15,10 +15,8 @@ const SignIn = () => {
     console.log(res.data.user.id,res.data.token);
     localStorage.setItem("user",JSON.stringify({"userId": (res.data.user.id), "jwt": (res.data.token)}))
     if(res.status===200 || res.statusText){
-      console.log("hello")
       navigate('/')
     }
-    // alert(JSON.stringify(values))
   }
   return (
     <div className="container my-3">

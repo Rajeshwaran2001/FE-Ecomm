@@ -39,7 +39,7 @@ const SignInForm = (props) => {
        
       <Field
         name="password"
-        type="text"
+        type="password"
         label="Your password"
         component={renderFormGroupField}
         placeholder="******"

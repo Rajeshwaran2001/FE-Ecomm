@@ -47,11 +47,9 @@ const Header = () => {
                 </Link>
               </div>
               {
-                userId && <button className="btn btn-primary mx-3" onClick={()=>LogoutFunction()}>Logout</button>
+                !!userId && (<button className="btn btn-primary mx-3" onClick={()=>LogoutFunction()}>Logout</button>)
               }
-              
-              {/* <Link to="/account/signin">Sign In</Link> |{" "}
-              <Link to="/account/signup"> Sign Up</Link> */}
+        
             </div>
           </div>
         </div>
