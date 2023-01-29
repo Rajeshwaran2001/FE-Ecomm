@@ -2,20 +2,20 @@ export const data = {
   banner: [
     {
       to: "/link",
-      img: "../../images/banner/Banner_2.webp",
-      title: "First slide label",
+      img: "../../images/banner/Banner2.png",
+      title: "heart of Perfect Farming",
       description: "Nulla vitae elit libero, a pharetra augue mollis interdum",
     },
     {
       to: "/link",
-      img: "../../images/banner/Banner_3.webp",
-      title: "Second slide label",
+      img: "../../images/banner/Banner3.png",
+      title: "Agriculture with a new Skill.",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     },
     {
       to: "/link",
-      img: "../../images/banner/Banner_1.webp",
-      title: "Third slide label",
+      img: "../../images/banner/Banner1.png",
+      title: "Adding Green to your Life",
       description: " Praesent commodo cursus magna, vel scelerisque nisl.",
     },
   ],

@@ -1,5 +1,4 @@
 import React, { lazy, Component } from "react";
-import { Link } from "react-router-dom";
 import { data } from "../data";
 import { ReactComponent as IconLaptop } from "bootstrap-icons/icons/laptop.svg";
 import { ReactComponent as IconHeadset } from "bootstrap-icons/icons/headset.svg";

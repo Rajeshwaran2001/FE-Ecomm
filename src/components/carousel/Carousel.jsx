@@ -14,7 +14,7 @@ const Carousel = (props) => {
         <span className="sr-only">Previous</span>
       </a>
       <a
-        className="carousel-control-next"
+        className="carousel-control-next"H
         href={"#" + props.id}
         role="button"
         data-bs-slide="next"
