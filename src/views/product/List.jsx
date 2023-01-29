@@ -1,5 +1,6 @@
 import React, { lazy, Component } from "react";
 import { data } from "../../data";
+import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTh, faBars } from "@fortawesome/free-solid-svg-icons";
 const Paging = lazy(() => import("../../components/Paging"));
@@ -28,16 +29,19 @@ class ProductListView extends Component {
     view: "list",
   };
 
+  componentDidMount(){
+    this.getProducts()
+  }
   UNSAFE_componentWillMount() {
     const totalItems = this.getProducts().length;
     this.setState({ totalItems });
   }
 
-  onPageChanged = (page) => {
-    let products = this.getProducts();
+  onPageChanged = async (page) => {
+    let products =await this.getProducts();
     const { currentPage, totalPages, pageLimit } = page;
     const offset = (currentPage - 1) * pageLimit;
-    const currentProducts = products.slice(offset, offset + pageLimit);
+    const currentProducts = products[data].slice(offset, offset + pageLimit);
     this.setState({ currentPage, currentProducts, totalPages });
   };
 
@@ -45,13 +49,8 @@ class ProductListView extends Component {
     this.setState({ view });
   };
 
-  getProducts = () => {
-    let products = data.products;
-    products = products.concat(products);
-    products = products.concat(products);
-    products = products.concat(products);
-    products = products.concat(products);
-    products = products.concat(products);
+  getProducts = async() => {
+    var products = await axios.get("http://20.219.190.188/api/product/")
     return products;
   };
 

@@ -1,28 +1,26 @@
 import React, { lazy } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios"
+import { useNavigate } from 'react-router-dom';
 const SingUpForm = lazy(() => import("../../components/account/SignUpForm"));
 
+
 function SignUp() {
+  const navigate = useNavigate() 
   const onSubmit = async(values)=>{
     const res =await axios.post("http://20.219.190.188/api/user/",{...values,gender:'male'})
     console.log(res)
-    // alert(JSON.stringify(values))
+    if(res.status===200 || res.statusText){
+      navigate("/account/signin")
+    }
   }
   return (
     <div className="container my-3">
     <div className="row border">
-      <div className="col-md-6 bg-light bg-gradient p-3 d-none d-md-block">
+      <div className="col-md-6 bg-light bg-gradient p-5 d-none d-md-block">
         <Link to="/">
           <img
-            src="../../images/banner/Dell.webp"
-            alt="..."
-            className="img-fluid"
-          />
-        </Link>
-        <Link to="/">
-          <img
-            src="../../images/banner/Laptops.webp"
+            src="../../images/authentication/signup.svg"
             alt="..."
             className="img-fluid"
           />
