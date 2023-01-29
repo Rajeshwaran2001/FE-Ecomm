@@ -1,6 +1,6 @@
 import React, { lazy, Component } from "react";
 import { data } from "../../data";
-import axios from "axios";
+import axios from "axios"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTh, faBars } from "@fortawesome/free-solid-svg-icons";
 const Paging = lazy(() => import("../../components/Paging"));
@@ -29,19 +29,39 @@ class ProductListView extends Component {
     view: "list",
   };
 
-  componentDidMount(){
-    this.getProducts()
-  }
   UNSAFE_componentWillMount() {
     const totalItems = this.getProducts().length;
     this.setState({ totalItems });
   }
 
   onPageChanged = async (page) => {
-    let products =await this.getProducts();
+
+    const res = await axios.get("http://20.219.190.188/api/product/")
+    console.log('product res', res?.data);
+
+    const structureChange = res?.data.map((data) => {
+      return {
+        id: 1,
+        sku: "FAS-01",
+        link: "/product/detail",
+        name: data.name,
+        img: data.image,
+        price: 180,
+        originPrice: 200,
+        discountPrice: 20,
+        discountPercentage: 10,
+        isNew: true,
+        isHot: false,
+        farmerId: data.farmerId,
+        star: 4,
+        isFreeShipping: true,
+        description: data.description
+      }
+    })
+    console.log('structureChange', structureChange);
     const { currentPage, totalPages, pageLimit } = page;
     const offset = (currentPage - 1) * pageLimit;
-    const currentProducts = products[data].slice(offset, offset + pageLimit);
+    const currentProducts = structureChange.slice(offset, offset + pageLimit);
     this.setState({ currentPage, currentProducts, totalPages });
   };
 
@@ -49,15 +69,20 @@ class ProductListView extends Component {
     this.setState({ view });
   };
 
-  getProducts = async() => {
-    var products = await axios.get("http://20.219.190.188/api/product/")
+  getProducts = () => {
+    let products = data.products;
+    products = products.concat(products);
+    products = products.concat(products);
+    products = products.concat(products);
+    products = products.concat(products);
+    products = products.concat(products);
     return products;
   };
 
   render() {
     return (
       <React.Fragment>
-        <div
+        {/* <div
           className="p-5 bg-primary bs-cover"
           style={{
             backgroundImage: "url(../../images/banner/50-Banner.webp)",
@@ -68,8 +93,8 @@ class ProductListView extends Component {
               T-Shirts
             </span>
           </div>
-        </div>
-        <Breadcrumb />
+        </div> */}
+        {/* <Breadcrumb /> */}
         <div className="container-fluid mb-3">
           <div className="row">
             <div className="col-md-3">
@@ -106,11 +131,10 @@ class ProductListView extends Component {
                       aria-label="Grid"
                       type="button"
                       onClick={() => this.onChangeView("grid")}
-                      className={`btn ${
-                        this.state.view === "grid"
-                          ? "btn-primary"
-                          : "btn-outline-primary"
-                      }`}
+                      className={`btn ${this.state.view === "grid"
+                        ? "btn-primary"
+                        : "btn-outline-primary"
+                        }`}
                     >
                       <FontAwesomeIcon icon={faTh} />
                     </button>
@@ -118,11 +142,10 @@ class ProductListView extends Component {
                       aria-label="List"
                       type="button"
                       onClick={() => this.onChangeView("list")}
-                      className={`btn ${
-                        this.state.view === "list"
-                          ? "btn-primary"
-                          : "btn-outline-primary"
-                      }`}
+                      className={`btn ${this.state.view === "list"
+                        ? "btn-primary"
+                        : "btn-outline-primary"
+                        }`}
                     >
                       <FontAwesomeIcon icon={faBars} />
                     </button>

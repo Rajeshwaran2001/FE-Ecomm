@@ -6,7 +6,7 @@ import axios from "axios"
 
 const Header = () => {
   if(localStorage.getItem("user")){
-    var userId = 0
+    var userId = 1
   }
   const navigate = useNavigate() 
   const LogoutFunction = async()=>{
