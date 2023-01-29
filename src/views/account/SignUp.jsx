@@ -8,7 +8,7 @@ const SingUpForm = lazy(() => import("../../components/account/SignUpForm"));
 function SignUp() {
   const navigate = useNavigate() 
   const onSubmit = async(values)=>{
-    const res =await axios.post("http://20.219.190.188/api/user/",{...values,gender:'male'})
+    const res =await axios.post("https://api.rajeshwaran.me/api/user/",{...values,gender:'male'})
     console.log(res)
     if(res.status===200 || res.statusText){
       navigate("/account/signin")

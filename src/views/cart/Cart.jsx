@@ -7,18 +7,12 @@ import { ReactComponent as IconChevronLeft } from "bootstrap-icons/icons/chevron
 import { ReactComponent as IconTruck } from "bootstrap-icons/icons/truck.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
-const CouponApplyForm = lazy(() =>
-  import("../../components/others/CouponApplyForm")
-);
 
 class CartView extends Component {
   constructor(props) {
     super();
     this.state = {};
   }
-  onSubmitApplyCouponCode = async (values) => {
-    alert(JSON.stringify(values));
-  };
   render() {
     return (
       <React.Fragment>
@@ -182,11 +176,6 @@ class CartView extends Component {
               </div>
             </div>
             <div className="col-md-3">
-              <div className="card mb-3">
-                <div className="card-body">
-                  <CouponApplyForm onSubmit={this.onSubmitApplyCouponCode} />
-                </div>
-              </div>
               <div className="card">
                 <div className="card-body">
                   <dl className="row border-bottom">
